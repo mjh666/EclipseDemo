@@ -1,7 +1,7 @@
 package com.example.entity;
 
 import java.io.Serializable;
-//nitamadeyoubing
+//JJYY,C
 public class User implements Serializable{
 
 	private Integer id;
