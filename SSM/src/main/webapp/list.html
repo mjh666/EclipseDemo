@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用户管理</title>
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/bootstrap/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="collapsed navbar-toggle" data-
+toggle="collapse" data-target=".navbar-collapse">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand">UMS</a>
+</div>
+<div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+<li><a href="../index.html">首页</a></li>
+<li class="active"><a href="list_user.html">用户管理</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<img th:src="@{/bootstrap/images/avatar1.jpeg}"
+height="20"> 管理员
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+<li><a href="profile.html">个人资料</a></li>
+<li><a href="password.html">修改密码</a></li>
+<li role="separator" class="divider"></li>
+<li><a href="login.html">退出</a></li>
+</ul>
+</li>
+</ul>
+</div><!--/.collapse.navbar-collapse-->
+</div><!--/.container-->
+</nav>
+<div class="container">
+<div class="content">
+<h4>
+<strong>用户管理</strong>
+<a class="btn btn-info btn-xs" th:href="@{/user/addnew.do}">新增</a>
+</h4>
+<hr/>
+<form class="form-inline toolbar">
+<div class="form-group form-group-sm">
+<label>用户名：</label>
+<input type="text" class="form-control" size="10"
+placeholder="用户名">
+</div>
+<div class="form-group form-group-sm">
+<label>手机：</label>
+<input type="text" class="form-control" size="10"
+placeholder="手机">
+</div>
+<div class="form-group form-group-sm">
+<label>邮箱：</label>
+<input type="text" class="form-control" size="10"
+placeholder="邮箱">
+</div>
+<div class="form-group form-group-sm">
+<label>状态：</label>
+<select class="form-control">
+<option value="-1">-请选择-</option>
+<option value="0">正常</option>
+<option value="1">删除</option>
+</select>
+</div>
+<div class="form-group form-group-sm">
+<button type="submit" class="btn btn-primary btn-sm">查询
+</button>
+</div>
+</form>
+<div class="table-responsive">
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th><input type="checkbox" class="checkAll"></th>
+<th>编号</th>
+<th>用户名</th>
+<th>密码</th>
+<th>年龄</th>
+<th>手机</th>
+<th>邮箱</th>
+<th>状态</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="user: ${users}">
+<td><input type="checkbox" class="checkItem"></td>
+<td th:text="${user.id}">1</td>
+<td th:text="${user.username}">tangseng</td>
+<td th:text="${user.password}">1234</td>
+<td th:text="${user.age}">21</td>
+<td th:text="${user.phone}">110</td>
+<td th:text="${user.email}">tangseng@xx.com</td>
+<td th:switch="${user.isDelete}">
+<span th:case="0" class="label label-success">正常</span>
+<span th:case="1" class="label label-danger">删除</span>
+</td>
+<td>
+<a class="btn btn-default btn-xs"
+th:href="@{/user/edit.do(id=${user.id})}">
+<span class="glyphicon glyphicon-pencil"></span> 修改
+</a>
+（WEB-INF/templates/user/addnew.html）
+<a class="btn btn-danger btn-xs"
+th:href="@{/user/delete.do(id=${user.id})}">
+<span class="glyphicon glyphicon-trash"></span> 删除
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="text-center">
+<ul class="pagination">
+<li><a href="#">&laquo;</a></li>
+<li class="active"><a href="#">1</a></li>
+<li><a href="#">2</a></li>
+<li><a href="#">3</a></li>
+<li><a href="#">&raquo;</a></li>
+</ul>
+</div>
+</div><!--/.content-->
+</div><!--/.container-->
+<script th:src="@{/bootstrap/js/jquery.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

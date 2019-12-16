@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserMapper">
+<!-- List<User> selectAll(); -->
+<select id="selectAll" resultType="com.example.entity.User">
+SELECT * FROM t_user
+</select>
+<!-- User selectByUsername(String username); -->
+<select id="selectByUsername" resultType="com.example.entity.User">
+SELECT * FROM t_user WHERE username = #{username}
+</select>
+<!-- User selectById(Integer id); -->
+<select id="selectById" resultType="com.example.entity.User">
+SELECT * FROM t_user WHERE id = #{id}
+</select>
+<!-- void insert(User user); -->
+<insert id="insert" parameterType="com.example.entity.User">
+INSERT INTO t_user(
+username, password, age, phone, email, is_delete
+) VALUES (
+#{username}, #{password}, #{age}, #{phone}, #{email}, #{isDelete}
+)
+</insert>
+<!-- void updateById(User user); -->
+<update id="updateById" parameterType="com.example.entity.User">
+UPDATE t_user
+SET
+username = #{username},
+password = #{password},
+age = #{age},
+phone = #{phone},
+email = #{email},
+is_delete = #{isDelete}
+WHERE
+id = #{id}
+</update>
+<!-- int deleteById(Integer id); -->
+<delete id="deleteById">
+DELETE FROM t_user WHERE id = #{id}
+</delete>
+</mapper>
